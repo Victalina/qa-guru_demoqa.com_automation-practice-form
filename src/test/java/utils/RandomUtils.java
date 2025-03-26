@@ -3,62 +3,44 @@ package utils;
 import com.github.javafaker.Faker;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
 
- static Faker faker = new Faker();
+  static Faker faker = new Faker();
 
-  public static void main(String[] args) {
-    System.out.println(getRandomFirstName());
-    System.out.println(getRandomLastName());
-    System.out.println(getRandomEmail());
-     System.out.println(getRandomNumber());
-   System.out.println(getRandomAddress());
-    System.out.println(getRandomGender());
-    System.out.println(getRandomDateOfBirthDay());
-    System.out.println(getRandomDateOfBirthMounth());
-    System.out.println(getRandomDateOfBirthYear());
-    System.out.println(getRandomHobby());
-    System.out.println(getRandomSubject());
-    System.out.println(faker.date().birthday());
-    System.out.println(getRandomState());
+  public static String getRandomFirstName() {
+
+    return faker.name().firstName();
 
   }
 
-  public static String getRandomFirstName(){
+  public static String getRandomLastName() {
 
-   return faker.name().firstName();
+    return faker.name().lastName();
 
   }
 
- public static String getRandomLastName(){
+  public static String getRandomEmail() {
 
-  return faker.name().lastName();
+    return faker.internet().safeEmailAddress();
 
- }
+  }
 
- public static String getRandomEmail(){
+  public static int getRandomInt(int min, int max) {
 
-  return faker.internet().safeEmailAddress();
+    return ThreadLocalRandom.current().nextInt(min, max + 1);
+  }
 
- }
+  public static String getRandomNumber() {
 
- public static int getRandomInt (int min, int max){
+    return String.format("%s", getRandomInt(1111111111, Integer.MAX_VALUE - 1));
 
-   return ThreadLocalRandom.current().nextInt(min, max + 1);
- }
+  }
 
- public static String getRandomNumber(){
-
-  return String.format("%s", getRandomInt(1111111111, Integer.MAX_VALUE - 1));
-
- }
-
-  public static String getRandomDateOfBirthDay(){
+  public static String getRandomDateOfBirthDay() {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatDay = new SimpleDateFormat("dd", Locale.ENGLISH);
@@ -68,7 +50,7 @@ public class RandomUtils {
 
   }
 
-  public static String getRandomDateOfBirthMounth(){
+  public static String getRandomDateOfBirthMounth() {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatMounth = new SimpleDateFormat("MMMMM", Locale.ENGLISH);
@@ -77,7 +59,8 @@ public class RandomUtils {
     return mouth;
 
   }
-  public static String getRandomDateOfBirthYear(){
+
+  public static String getRandomDateOfBirthYear() {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatYear = new SimpleDateFormat("yyyy", Locale.ENGLISH);
@@ -88,14 +71,14 @@ public class RandomUtils {
   }
 
 
- public static String getRandomGender(){
-   String[] genders = {"Male", "Female", "Other"};
+  public static String getRandomGender() {
+    String[] genders = {"Male", "Female", "Other"};
 
-   return getRandomItemFromArray(genders);
+    return getRandomItemFromArray(genders);
 
- }
+  }
 
- public static String getRandomItemFromArray(String[] array){
+  public static String getRandomItemFromArray(String[] array) {
 
     int index = getRandomInt(0, array.length - 1);
 
@@ -103,21 +86,21 @@ public class RandomUtils {
 
   }
 
-  public static String getRandomHobby(){
+  public static String getRandomHobby() {
     String[] hobbies = {"Sports", "Reading", "Music"};
 
     return getRandomItemFromArray(hobbies);
 
   }
 
-  public static String getRandomSubject(){
+  public static String getRandomSubject() {
     String[] subjects = {"Maths", "Accounting", "Arts", "Social Studies"};
 
     return getRandomItemFromArray(subjects);
 
   }
 
-  public static String getRandomState(){
+  public static String getRandomState() {
     String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
 
     return getRandomItemFromArray(states);
@@ -131,7 +114,7 @@ public class RandomUtils {
 
       return getRandomItemFromArray(cities);
 
-    } else if (state.equals("Uttar Pradesh")){
+    } else if (state.equals("Uttar Pradesh")) {
 
       String[] cities = {"Agra", "Lucknow", "Merrut"};
 
@@ -152,14 +135,9 @@ public class RandomUtils {
     }
   }
 
+  public static String getRandomAddress() {
 
+    return faker.address().streetAddress();
 
- public static String getRandomAddress(){
-
-  return faker.address().streetAddress();
-
- }
-
-
-
+  }
 }
