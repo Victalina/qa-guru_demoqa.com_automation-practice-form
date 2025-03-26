@@ -10,6 +10,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
   void successFullRegistrationTest() {
 
     registrationPage.openPage()
+            .removeBanners()
             .setFirstName("Victoria")
             .setLastName("Test")
             .setEmail("victoria@mail.com")
@@ -40,6 +41,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
   void successRegistrationRequiredFieldsTest() {
 
     registrationPage.openPage()
+            .removeBanners()
             .setFirstName("John")
             .setLastName("Smith")
             .setEmail("john@mail.com")
@@ -63,6 +65,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
   void UnsuccessfulRegistrationWithoutRequiredFieldsTest() {
 
     registrationPage.openPage()
+            .removeBanners()
             .setFirstName("Mike")
             .setLastName("Green")
             .submit()
