@@ -44,19 +44,17 @@ public class RandomUtils {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatDay = new SimpleDateFormat("dd", Locale.ENGLISH);
-    String day = formatDay.format(fakerDateOfBirth);
 
-    return day;
+    return formatDay.format(fakerDateOfBirth);
 
   }
 
   public String getRandomDateOfBirthMonth() {
 
     Date fakerDateOfBirth = faker.date().birthday();
-    SimpleDateFormat formatMounth = new SimpleDateFormat("MMMMM", Locale.ENGLISH);
-    String month = formatMounth.format(fakerDateOfBirth);
+    SimpleDateFormat formatMonth = new SimpleDateFormat("MMMMM", Locale.ENGLISH);
 
-    return month;
+    return formatMonth.format(fakerDateOfBirth);
 
   }
 
@@ -64,9 +62,8 @@ public class RandomUtils {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatYear = new SimpleDateFormat("yyyy", Locale.ENGLISH);
-    String year = formatYear.format(fakerDateOfBirth);
 
-    return year;
+    return formatYear.format(fakerDateOfBirth);
 
   }
 
