@@ -9,38 +9,38 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
 
-  static Faker faker = new Faker();
+  Faker faker = new Faker();
 
-  public static String getRandomFirstName() {
+  public String getRandomFirstName() {
 
     return faker.name().firstName();
 
   }
 
-  public static String getRandomLastName() {
+  public String getRandomLastName() {
 
     return faker.name().lastName();
 
   }
 
-  public static String getRandomEmail() {
+  public String getRandomEmail() {
 
     return faker.internet().safeEmailAddress();
 
   }
 
-  public static int getRandomInt(int min, int max) {
+  public int getRandomInt(int min, int max) {
 
     return ThreadLocalRandom.current().nextInt(min, max + 1);
   }
 
-  public static String getRandomNumber() {
+  public String getRandomNumber() {
 
     return String.format("%s", getRandomInt(1111111111, Integer.MAX_VALUE - 1));
 
   }
 
-  public static String getRandomDateOfBirthDay() {
+  public String getRandomDateOfBirthDay() {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatDay = new SimpleDateFormat("dd", Locale.ENGLISH);
@@ -50,17 +50,17 @@ public class RandomUtils {
 
   }
 
-  public static String getRandomDateOfBirthMounth() {
+  public String getRandomDateOfBirthMonth() {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatMounth = new SimpleDateFormat("MMMMM", Locale.ENGLISH);
-    String mouth = formatMounth.format(fakerDateOfBirth);
+    String month = formatMounth.format(fakerDateOfBirth);
 
-    return mouth;
+    return month;
 
   }
 
-  public static String getRandomDateOfBirthYear() {
+  public String getRandomDateOfBirthYear() {
 
     Date fakerDateOfBirth = faker.date().birthday();
     SimpleDateFormat formatYear = new SimpleDateFormat("yyyy", Locale.ENGLISH);
@@ -71,71 +71,46 @@ public class RandomUtils {
   }
 
 
-  public static String getRandomGender() {
+  public String getRandomGender() {
     String[] genders = {"Male", "Female", "Other"};
 
-    return getRandomItemFromArray(genders);
+    return faker.options().option(genders);
 
   }
 
-  public static String getRandomItemFromArray(String[] array) {
-
-    int index = getRandomInt(0, array.length - 1);
-
-    return array[index];
-
-  }
-
-  public static String getRandomHobby() {
+  public String getRandomHobby() {
     String[] hobbies = {"Sports", "Reading", "Music"};
 
-    return getRandomItemFromArray(hobbies);
+    return faker.options().option(hobbies);
 
   }
 
-  public static String getRandomSubject() {
+  public String getRandomSubject() {
     String[] subjects = {"Maths", "Accounting", "Arts", "Social Studies"};
 
-    return getRandomItemFromArray(subjects);
+    return faker.options().option(subjects);
 
   }
 
-  public static String getRandomState() {
+  public String getRandomState() {
     String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
 
-    return getRandomItemFromArray(states);
+    return faker.options().option(states);
 
   }
 
-  public static String getRandomCity(String state) {
-    if (state.equals("NCR")) {
+  public String getRandomCity(String state) {
 
-      String[] cities = {"Delhi", "Gurgaon", "Noida"};
-
-      return getRandomItemFromArray(cities);
-
-    } else if (state.equals("Uttar Pradesh")) {
-
-      String[] cities = {"Agra", "Lucknow", "Merrut"};
-
-      return getRandomItemFromArray(cities);
-
-    } else if (state.equals("Haryana")) {
-
-      String[] cities = {"Karnal", "Panipat"};
-
-      return getRandomItemFromArray(cities);
-
-    } else {
-
-      String[] cities = {"Jaipur", "Jaiselmer"};
-
-      return getRandomItemFromArray(cities);
-
-    }
+    return switch (state) {
+      case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+      case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
+      case "Haryana" -> faker.options().option("Karnal", "Panipat");
+      case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
+      default -> "";
+    };
   }
 
-  public static String getRandomAddress() {
+  public String getRandomAddress() {
 
     return faker.address().streetAddress();
 
