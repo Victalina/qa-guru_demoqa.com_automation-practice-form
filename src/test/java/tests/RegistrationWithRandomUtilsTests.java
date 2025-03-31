@@ -63,7 +63,7 @@ public class RegistrationWithRandomUtilsTests extends TestBase {
   }
 
   @Test
-  void UnsuccessfulRegistrationWithoutRequiredFieldsTest() {
+  void unsuccessfulRegistrationWithoutRequiredFieldsTest() {
 
     registrationPage.openPage()
             .removeBanners()
